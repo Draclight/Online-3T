@@ -1,5 +1,4 @@
-from Classes.Models.Case import Case
-from Classes.Jeu import Jeu
+from Classes.Game import Game
 
-j:Jeu = Jeu()
+j = Game()
 j.start()

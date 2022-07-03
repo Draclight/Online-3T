@@ -1,8 +1,8 @@
-class Case:
+class Box:
     def __init__(self, i, j):
         self.isSelected = False
-        self.joueur = None
-        self.valeur = None
+        self.player = None
+        self.value = "-"
         self.i = i
         self.set_j(j)
     
@@ -12,17 +12,17 @@ class Case:
     def set_isSelected(self, isSelected):
         self.isSelected = isSelected
     
-    def get_joueur(self):
-        return self.joueur
+    def get_player(self):
+        return self.player
 
-    def set_joueur(self, joueur):
-        self.joueur = joueur
+    def set_player(self, player):
+        self.player = player
 
-    def get_valeur(self):
-        return self.valeur
+    def get_value(self):
+        return self.value
 
-    def set_valeur(self, valeur):
-        self.valeur = valeur
+    def set_value(self, value):
+        self.value = value
 
     def get_i(self):
         return self.i
