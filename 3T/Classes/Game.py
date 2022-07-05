@@ -28,7 +28,10 @@ class Game:
         return random.randint(0, 1)
 
     def swap_player_turn(self, player):
-        return self.players[0] if player == self.players[0] else self.players[1]
+        if player.name == self.players[0].name:
+            return self.players[1] 
+        else:              
+            return self.players[0] 
 
     def is_board_filled(self):
         for row in self.board:
@@ -42,6 +45,15 @@ class Game:
             for item in row:
                 print(item.value, end=" ")
             print()
+
+    def player_play(self, row, col, player):
+        box = self.board[row][col]
+        if box.get_isSelected():
+            return False
+        else:
+            box = player.play(box)
+            self.board[row][col] = box
+            return True
 
     def fix_spot(self, row, col, color):
         self.board[row][col].value = color
@@ -89,18 +101,35 @@ class Game:
         return False
 
     def start(self):
-        p1:Player = self.players[0]
-        p2:Player = self.players[1]
         while self.isTermine != True :
             print("Player", self.currentPlayer.name, "turn")
             self.show_board()
+            isPlayValid = False
 
-            # taking user input
+            """# taking user input
             row, col = list(map(int, input("Enter row and column numbers to fix spot: ").split()))
             print()
             # fixing the spot
             self.fix_spot(row - 1, col - 1, self.currentPlayer.color)
+            """
+            
+            while isPlayValid != True:
+                # taking user input
+                row, col = list(map(int, input("Enter row and column numbers to fix spot: ").split()))
+                if row < 1 :
+                    print("row est invalide")
+                elif row > 3:
+                    print("row est invalide")
+                elif col < 1:
+                    print("col est invalide")
+                elif col > 3:
+                    print("col est invalide")
+                else:
+                    print()
+                    # fixing the spot
+                    isPlayValid = self.player_play(row - 1, col - 1, self.currentPlayer)
 
+            isPlayValid = False
             # checking whether current player is won or not
             if self.is_player_win(self.currentPlayer):
                 print(f"Player {self.currentPlayer.name} wins the game!")

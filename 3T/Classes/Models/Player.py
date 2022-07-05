@@ -15,6 +15,8 @@ class Player:
     def set_color(self, color):
         self.color = color
 
-    def play(self, case):
-        case.set_isSelected(True)
-        case.set_player(self)
+    def play(self, box):
+        box.set_isSelected(True)
+        box.set_player(self)
+        box.set_value(self.color)
+        return box
