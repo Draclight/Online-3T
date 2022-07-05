@@ -105,13 +105,6 @@ class Game:
             print("Player", self.currentPlayer.name, "turn")
             self.show_board()
             isPlayValid = False
-
-            """# taking user input
-            row, col = list(map(int, input("Enter row and column numbers to fix spot: ").split()))
-            print()
-            # fixing the spot
-            self.fix_spot(row - 1, col - 1, self.currentPlayer.color)
-            """
             
             while isPlayValid != True:
                 # taking user input
@@ -128,6 +121,9 @@ class Game:
                     print()
                     # fixing the spot
                     isPlayValid = self.player_play(row - 1, col - 1, self.currentPlayer)
+                    if isPlayValid == False:
+                        print("Case occupé, choisissez une autre case!")
+                        self.show_board()
 
             isPlayValid = False
             # checking whether current player is won or not
